@@ -29,10 +29,6 @@ class Points:
     def __getitem__(self, index) -> Point:
         return self._points[index]
 
-    def __str__(self) -> str:
-        # TODO : represent Points without the `__str__()` method
-        return ", ".join([point.__str__() for point in self._points])
-
 
 class ClosestPointsData(models.Model):
     submitted_points = models.TextField()

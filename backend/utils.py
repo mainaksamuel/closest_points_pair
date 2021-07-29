@@ -4,7 +4,7 @@ import re
 import sys
 import math
 import ast
-from typing import Any, List, Union
+from typing import Any, List
 
 from .models import Points, Point
 
@@ -26,6 +26,10 @@ def parse_request(text: str) -> Points:
 
 def get_closest_pair(points: Points) -> List[Point]:
     shortest_distance = sys.maxsize
+
+    if points.get_count() < 2:
+        return points.get_points()
+
     closest_pair = [Any] * 2
 
     for i in range(points.get_count() - 1):
