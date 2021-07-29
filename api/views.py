@@ -17,10 +17,17 @@ from rest_framework import status
 def calculate_closest_points(data: Dict) -> Dict:
     submitted = data.get("submitted_points")
     if submitted:
-        parsed = parse_request(submitted)
-        point1, point2 = get_closest_pair(parsed)
-        closest_pair = f"{point1}, {point2}"
-        return {"submitted_points": submitted, "closest_pair": closest_pair}
+        parsed = parse_request(submitted.strip())
+        pair = get_closest_pair(parsed)
+
+        if len(pair) == 1:
+            closest_pair = f"{pair[0]}"
+            return {"submitted_points": submitted, "closest_pair": closest_pair}
+        elif len(pair) > 2:
+            point1, point2 = pair
+            closest_pair = f"{point1}, {point2}"
+            return {"submitted_points": submitted, "closest_pair": closest_pair}
+
     else:
         return data
 
