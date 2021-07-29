@@ -34,9 +34,9 @@ class Points:
         return ", ".join([point.__str__() for point in self._points])
 
 
-class ClosestPoints(models.Model):
+class ClosestPointsData(models.Model):
     submitted_points = models.TextField()
-    closest_pair = models.CharField(max_length=255)
+    closest_pair = models.CharField(max_length=255, blank=True)
 
     def __str__(self):
         return f"{self.submitted_points}\n {self.closest_pair}"

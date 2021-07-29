@@ -4,7 +4,7 @@ import re
 import sys
 import math
 import ast
-from typing import Any, List
+from typing import Any, List, Union
 
 from .models import Points, Point
 
@@ -28,8 +28,6 @@ def get_closest_pair(points: Points) -> List[Point]:
     shortest_distance = sys.maxsize
     closest_pair = [Any] * 2
 
-    print(f"Submitted points: {points}")
-
     for i in range(points.get_count() - 1):
         for j in range(i + 1, points.get_count()):
             x1, x2 = points[i].x, points[j].x
@@ -41,9 +39,5 @@ def get_closest_pair(points: Points) -> List[Point]:
                 shortest_distance = distance
                 closest_pair[0] = points[i]
                 closest_pair[1] = points[j]
-
-    print(
-        f"Closest pair: [{closest_pair[0]}, {closest_pair[1]}] , Distance: {shortest_distance}"
-    )
 
     return closest_pair
