@@ -41,11 +41,23 @@ INSTALLED_APPS = [
     "backend.apps.BackendConfig",
     "api.apps.ApiConfig",
     "rest_framework",
+    "drf_spectacular",
 ]
 
 REST_FRAMEWORK = {
+    # "DEFAULT_AUTHENTICATION_CLASSES": [
+    #     "rest_framework.authentication.BasicAuthentication",
+    #     "rest_framework.authentication.SessionAuthentication",
+    # ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 10,
+}
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Closest Points Pair API",
+    "DESCRIPTION": "Calculate the closest points pair from a string of points input",
+    "VERSION": "1.0.0",
 }
 
 MIDDLEWARE = [
