@@ -5,6 +5,8 @@ from django.db import models
 
 
 class Point:
+    """A class used to represent a Point (x and y coordinates)"""
+
     def __init__(self, x, y):
         self.x = x
         self.y = y
@@ -14,6 +16,8 @@ class Point:
 
 
 class Points:
+    """A class used to represent a collection of Point"""
+
     def __init__(self):
         self._points: List[Point] = []
 

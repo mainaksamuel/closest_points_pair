@@ -10,6 +10,7 @@ from .models import Points, Point
 
 
 def parse_request(text: str) -> Points:
+    """Parse a string input into a list of Points"""
     pattern = r"\([-+]?[0-9]*\.?[0-9]+\s*,{1}\s*[-+]?[0-9]*\.?[0-9]+\)"
     matches = re.findall(pattern, text)
 
@@ -25,6 +26,10 @@ def parse_request(text: str) -> Points:
 
 
 def get_closest_pair(points: Points) -> List[Point]:
+    """
+    Calculate the closest points pair from a list of point.
+    (Euclidean Space)
+    """
     shortest_distance = sys.maxsize
 
     if points.get_count() < 2:

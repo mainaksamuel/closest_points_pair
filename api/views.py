@@ -27,12 +27,17 @@ def api_index(request):
         "Create a record": {"url_path": "/api/points/", "method": "POST"},
         "Update a record": {"url_path": "/api/points/<int:id>/", "method": "PUT"},
         "Delete a record": {"url_path": "/api/points/<int:id>/", "method": " DELETE"},
+        "API Documentation": {
+            "url_path": "/api/points/schema/swagger-ui/",
+            "method": " GET",
+        },
     }
 
     return Response(api_urls)
 
 
 def calculate_closest_points(data: Dict) -> Dict:
+    """Returns the closest points pair, otherwise the parameter itself"""
     submitted = data.get("submitted_points")
     if submitted:
         parsed = parse_request(submitted.strip())
