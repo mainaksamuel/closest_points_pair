@@ -7,3 +7,4 @@ instance/
 .coverage
 
 *.egg-info/
+db.sqlite3
