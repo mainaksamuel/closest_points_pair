@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from django.urls import path
-from django.http import HttpResponseRedirect
 
 from drf_spectacular.views import (
     SpectacularAPIView,
