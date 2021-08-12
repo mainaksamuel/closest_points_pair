@@ -129,8 +129,6 @@ $ curl -X PUT -d submitted_points="(2,3), (1,1), (5, 4),(0,0)" https://closest-p
 ```
 
 * Delete a record
-&nbsp;
-There will be no output, however, the record has been deleted
 ```bash
 $ curl -X DELETE https://closest-points-pair.herokuapp.com/api/points/1/  ↵
 
