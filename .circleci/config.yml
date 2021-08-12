@@ -28,3 +28,9 @@ jobs:
           name: Run tests
           # This assumes packages are installed via the install-package step above
           command: python manage.py test
+
+      - store_test_results:
+          path: test-results
+      - store_artifacts:
+          path: test-results
+          destination: tr1
