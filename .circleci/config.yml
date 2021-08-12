@@ -26,7 +26,7 @@ jobs:
       - image: cimg/python:3.8
         # environment:
         #   DATABASE_URL: postgresql://root@localhost/circle_test?sslmode=disable
-      - image: circleci/postgres
+      - image: circleci/postgres:9.6.2-alpine
         environment:
           POSTGRES_USER: root
           POSTGRES_PASSWORD: circletest
@@ -45,4 +45,4 @@ jobs:
       - run:
           name: Run tests
           # This assumes packages are installed via the install-package step above
-          command: pipenv run python manage.py test
+          command: python manage.py test
