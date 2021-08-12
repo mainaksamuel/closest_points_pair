@@ -14,7 +14,11 @@ from . import views
 urlpatterns = [
     path("", views.api_index, name="api-index"),
     path("points/", views.ClosestPointsDataList.as_view(), name="points"),
-    path("points/<int:pk>/", views.ClosestPointsDataDetails.as_view()),
+    path(
+        "points/<int:pk>/",
+        views.ClosestPointsDataDetails.as_view(),
+        name="points-details",
+    ),
     path("points/schema/", SpectacularAPIView.as_view(), name="schema"),
     # Optional UI:
     path(

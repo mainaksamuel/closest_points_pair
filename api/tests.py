@@ -42,6 +42,65 @@ class ApiRestTests(APITestCase):
         )
         self.assertEqual(ClosestPointsData.objects.get().closest_pair, "(2, 3), (1, 1)")
 
+    def test_retrieve_single_closest_points_pair_data(self):
+        create_url = reverse("points")
+        data = {"submitted_points": "(2,3), (1,1), (5,4)"}
+        create_response = self.client.post(create_url, data, format="json")
+        self.assertEqual(create_response.status_code, status.HTTP_201_CREATED)
+
+        retrieve_url = reverse("points-details", args=[1])
+        retrieve_response = self.client.get(retrieve_url, format="json")
+        self.assertEqual(retrieve_response.status_code, status.HTTP_200_OK)
+        self.assertEqual(ClosestPointsData.objects.count(), 1)
+        self.assertEqual(
+            ClosestPointsData.objects.get().submitted_points,
+            retrieve_response.data["submitted_points"],
+        )
+        self.assertEqual(
+            ClosestPointsData.objects.get().closest_pair,
+            retrieve_response.data["closest_pair"],
+        )
+
+    def test_update_closest_points_pair_data(self):
+        create_url = reverse("points")
+        data = {"submitted_points": "(2,3), (1,1), (5,4)"}
+        create_response = self.client.post(create_url, data, format="json")
+        self.assertEqual(create_response.status_code, status.HTTP_201_CREATED)
+
+        details_url = reverse("points-details", args=[1])
+        retrieve_response = self.client.get(details_url, format="json")
+        self.assertEqual(retrieve_response.status_code, status.HTTP_200_OK)
+
+        update_data = {"submitted_points": "(22,33), (11,11), (55,44)"}
+        update_response = self.client.put(details_url, update_data, format="json")
+        self.assertEqual(update_response.status_code, status.HTTP_200_OK)
+
+        self.assertEqual(ClosestPointsData.objects.count(), 1)
+        self.assertEqual(
+            ClosestPointsData.objects.get().submitted_points,
+            update_data["submitted_points"],
+        )
+
+    def test_delete_single_closest_points_pair_data(self):
+        create_url = reverse("points")
+        data = {"submitted_points": "(2,3), (1,1), (5,4)"}
+        create_response = self.client.post(create_url, data, format="json")
+        self.assertEqual(create_response.status_code, status.HTTP_201_CREATED)
+
+        details_url = reverse("points-details", args=[1])
+        retrieve_response = self.client.get(details_url, format="json")
+        self.assertEqual(retrieve_response.status_code, status.HTTP_200_OK)
+
+        delete_response = self.client.delete(details_url)
+        self.assertEqual(delete_response.status_code, status.HTTP_204_NO_CONTENT)
+
+        self.assertEqual(ClosestPointsData.objects.count(), 0)
+
+    def test_returns_404_for_closest_points_pair_data_notfound(self):
+        url = reverse("points-details", args=[1])
+        response = self.client.get(url, format="json")
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
     def test_returns_status_400_for_non_point_input(self):
         url = reverse("points")
         data = {"submitted_points": "no points submitted"}
