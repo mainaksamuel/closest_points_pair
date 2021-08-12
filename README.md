@@ -37,7 +37,7 @@ API endpoint that accepts a string of comma separated points
 | `submitted_points`   | `string` | **Required**. Comma separated points input |
 
 
-  #### 4. Update an item
+#### 4. Update an item
 
 ```http
   PUT /api/points/<int:id>
@@ -48,7 +48,7 @@ API endpoint that accepts a string of comma separated points
 | `id`      | `int`    | **Required**. Id of record to Update |
 | `submitted_points`      | `string`    | **Required**. Comma separated points input|
 
- #### 5. Update an item
+#### 5. Delete an item
 
 ```http
   DELETE /api/points/<int:id>
@@ -60,7 +60,7 @@ API endpoint that accepts a string of comma separated points
 
 
 
- #### 6. API Index
+#### 6. API Index
 
 ```http
   GET /api/
@@ -68,7 +68,7 @@ API endpoint that accepts a string of comma separated points
 &nbsp;&nbsp;&nbsp; Lists the API endpoints in the application
 
 
- #### 6. API Documentation
+#### 7. API Documentation
 
 ```http
   GET /api/points/schema/swagger-ui/
@@ -129,7 +129,8 @@ $ curl -X PUT -d submitted_points="(2,3), (1,1), (5, 4),(0,0)" https://closest-p
 ```
 
 * Delete a record
-There will be no output, however, the record has been deleted from the database
+&nbsp;
+There will be no output, however, the record has been deleted
 ```bash
 $ curl -X DELETE https://closest-points-pair.herokuapp.com/api/points/1/  ↵
 
