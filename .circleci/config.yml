@@ -31,7 +31,7 @@ jobs:
           command: python manage.py test
 
       - store_test_results:
-          path: test-results
+          path: /tmp/test-results
       - store_artifacts:
-          path: test-results
+          path: /tmp/test-results
           destination: tr1
